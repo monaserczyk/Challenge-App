@@ -4,7 +4,6 @@ Employee employee1 = new Employee("Alex","Matus","38");
 Employee employee2 = new Employee("Luis","Italicus","33");
 Employee employee3 = new Employee("Rita","Kitty","25");
 
-
 employee1.AddScore(9);
 employee1.AddScore(7);
 employee1.AddScore(10);
