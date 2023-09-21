@@ -8,15 +8,21 @@ Employee employee3 = new Employee("Rita","Kitty","25");
 employee1.AddScore(9);
 employee1.AddScore(7);
 employee1.AddScore(10);
+employee1.SubtractScore(3);
+employee1.AddBonusScore(2);
 
 employee2.AddScore(5);
 employee2.AddScore(8);
 employee2.AddScore(6);
+employee2.SubtractScore(7);
+employee2.AddBonusScore(6);
 
 employee3.AddScore(1);
 employee3.AddScore(3);
 employee3.AddScore(2);
-
+employee3.SubtractScore(1);
+employee3.SubtractScore(3);
+employee3.AddBonusScore(9);
 
 
 List<Employee> employees = new List<Employee>()
@@ -40,8 +46,6 @@ var surname = employeeWithMaxResult.Surname;
 var age = employeeWithMaxResult.Age;
 var result = employeeWithMaxResult.Result;
 
-
-
 Console.WriteLine
-    (" Pracownik z najlepszym wynikiem" + "  " + name + " " + surname + "  " + age + "lat " + "otrzymal/a " + maxResult + "punktow.");  
+    (" Pracownik z najlepszym wynikiem:" + "  " + name + " " + surname + "  " + age + "lat " + "otrzymal/a " + maxResult + "punktow.");  
 

@@ -29,6 +29,16 @@ namespace Challenge_App
         { 
             this.score.Add(score); 
         }
+
+        public void SubtractScore(int score)
+        {
+            this.score.Add(-score);
+        }
+
+        public void AddBonusScore(int score) 
+        {
+            this.score.Add(2 * score);
+        }
     }
 
 }
