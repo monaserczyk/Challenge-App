@@ -5,7 +5,7 @@ namespace Challenge_App.Tests
         [Test]
         public void WhenTheSameNameAndSurname_ThenNotTheSameEmployee()
         {
-            var employee1 = new Employee("Katarzyna","Nowak");
+            var employee1 = new Employee("Katarzyna", "Nowak");
             var employee2 = new Employee("Katarzyna", "Nowak");
 
             Assert.AreNotEqual(employee1, employee2);
