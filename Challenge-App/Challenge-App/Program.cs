@@ -1,35 +1,29 @@
 ﻿using Challenge_App;
 
-Employee employee = new Employee("Alex", "Mateus");
-employee.AddGrade("Adam");
-employee.AddGrade("8,99");
-employee.AddGrade(7);
-employee.AddGrade(31);
-employee.AddGrade(9f);
+Console.WriteLine("Welcome to The Challenger, employee evaluation program.");
+Console.WriteLine("_________________________________________________________");
+Console.WriteLine();
+
+Console.WriteLine("Provide an employee name.");
+var employeename = Console.ReadLine();
+Console.WriteLine("Provide an employee surname.");
+var employeesurname = Console.ReadLine();
+var employee = new Employee(employeename, employeesurname);
+Console.WriteLine(employee.Name);
+Console.WriteLine(employee.Surname);
+
+while (true)
+{
+    Console.WriteLine("Provide an employee rating.");
+    var input = Console.ReadLine();
+    if (input == "q")
+    {
+        break;
+    }
+    employee.AddGrade(input);
+}
+
 var statistics = employee.GetStatistics();
-
-
-var statisticsForEachLoop = employee.GetStatisticsWithForEach();
-var statisticsForLoop = employee.GetStatisticsWithFor();
-var statisticsDoWhileLoop = employee.GetStatisticsWithDoWhile();
-var statisticsWhileLoop = employee.GetStatisticsWithWhile();
-
-Console.WriteLine(employee.Name + " " + employee.Surname);
-Console.WriteLine($"Average {statisticsForEachLoop.Average:N3}");
-Console.WriteLine($"Max {statisticsForEachLoop.Max}");
-Console.WriteLine($"Min {statisticsForEachLoop.Min}");
-
-Console.WriteLine(employee.Name + " " + employee.Surname);
-Console.WriteLine($"Average {statisticsForLoop.Average:N3}");
-Console.WriteLine($"Max {statisticsForLoop.Max}");
-Console.WriteLine($"Min {statisticsForLoop.Min}");
-
-Console.WriteLine(employee.Name + " " + employee.Surname);
-Console.WriteLine($"Average {statisticsDoWhileLoop.Average:N3}");
-Console.WriteLine($"Max {statisticsDoWhileLoop.Max}");
-Console.WriteLine($"Min {statisticsDoWhileLoop.Min}");
-
-Console.WriteLine(employee.Name + " " + employee.Surname);
-Console.WriteLine($"Average {statisticsWhileLoop.Average:N3}");
-Console.WriteLine($"Max {statisticsWhileLoop.Max}");
-Console.WriteLine($"Min {statisticsWhileLoop.Min}");
+Console.WriteLine($"Average: {statistics.Average}");
+Console.WriteLine($"Min: {statistics.Min}");
+Console.WriteLine($"Max: {statistics.Max}");
