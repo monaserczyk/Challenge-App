@@ -1,32 +1,41 @@
 ﻿namespace Challenge_App
 {
-    public class Employee : IEmployee
+    internal class Supervisor : IEmployee
     {
+
         public List<float> grades = new List<float>();
+        public string Name { get; set; }
 
-        public Employee(string name, string surname, char gender, int age)
+        public string Surname { get; set; }
 
+        public char Gender { get; set; }
+
+        public int Age { get; set; }
+
+        public Supervisor(string name, string surname, char gender, int age)
         {
             this.Name = name;
             this.Surname = surname;
             this.Gender = gender;
             this.Age = age;
         }
-        public string Name { get; private set; }
-        public string Surname { get; private set; }
-        public char Gender { get; private set; }
-        public int Age { get; private set; }
 
         public void AddGrade(float grade)
         {
             if (grade >= 0 && grade <= 100)
             {
-                this.grades.Add(grade);
+                this.AddGrade(grade);
             }
             else
             {
                 throw new Exception("Use value 0 - 100!");
             }
+        }
+
+        public void AddGrade(double grade)
+        {
+            float valueInDbl = (float)Math.Ceiling(grade);
+            this.AddGrade(valueInDbl);
         }
 
         public void AddGrade(int grade)
@@ -37,31 +46,71 @@
 
         public void AddGrade(string grade)
         {
-            if (float.TryParse(grade, out float result))
-            {
-                if (result >= 0 && result <= 100)
-                {
-                    this.AddGrade(result);
-                }
-                else
-                {
-                    throw new Exception("Use value 0 - 100!");
-                }
-            }
-            else
-            {
-                throw new Exception("String is not a valid float!");
-            }
-        }
 
-        public void AddGrade(double grade)
-        {
-            float valueInDbl = (float)Math.Ceiling(grade);
-            this.AddGrade(valueInDbl);
+            switch (grade)
+            {
+                case "6":
+                    this.AddGrade(100);
+                    break;
+                case "6-":
+                case "-6":
+                    this.AddGrade(95);
+                    break;
+                case "5+":
+                case "+5":
+                    this.AddGrade(85);
+                    break;
+                case "5":
+                    this.AddGrade(80);
+                    break;
+                case "-5":
+                case "5-":
+                    this.AddGrade(75);
+                    break;
+                case "4+":
+                case "+4":
+                    this.AddGrade(65);
+                    break;
+                case "4":
+                    this.AddGrade(60);
+                    break;
+                case "-4":
+                case "4-":
+                    this.AddGrade(55);
+                    break;
+                case "3+":
+                case "+3":
+                    this.AddGrade(45);
+                    break;
+                case "3":
+                    this.AddGrade(40);
+                    break;
+                case "-3":
+                case "3-":
+                    this.AddGrade(35);
+                    break;
+                case "2+":
+                case "+2":
+                    this.AddGrade(25);
+                    break;
+                case "2":
+                    this.AddGrade(20);
+                    break;
+                case "2-":
+                case "-2":
+                    this.AddGrade(15);
+                    break;
+                case "1":
+                    this.AddGrade(0);
+                    break;
+                default:
+                    throw new Exception("Grade out of the range 1-6");
+            }
         }
 
         public void AddGrade(char grade)
         {
+
             switch (grade)
             {
                 case 'A':
@@ -127,4 +176,5 @@
             return statistics;
         }
     }
+
 }
