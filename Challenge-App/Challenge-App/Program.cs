@@ -8,7 +8,7 @@ Console.WriteLine("Provide an employee name.");
 var employeename = Console.ReadLine();
 Console.WriteLine("Provide an employee surname.");
 var employeesurname = Console.ReadLine();
-var employee = new Employee(employeename, employeesurname);
+var employee = new Employee(employeename, employeesurname, 'F', 22);
 Console.WriteLine(employee.Name);
 Console.WriteLine(employee.Surname);
 

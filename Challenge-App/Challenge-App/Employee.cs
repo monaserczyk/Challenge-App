@@ -1,73 +1,87 @@
 ﻿namespace Challenge_App
 {
-    public record Employee(string Name, string Surname)
+    public class Employee : Person
     {
         public List<float> grades = new List<float>();
 
-        public string Name { get; private set; } = Name;
-        public string Surname { get; private set; } = Surname;
+        public Employee(string name, string surname, char gender, int age)
+            : base(name, surname, gender, age)
+        {
 
-
+        }
 
         public void AddGrade(float grade)
         {
-
             if (grade >= 0 && grade <= 100)
             {
                 this.grades.Add(grade);
             }
             else
             {
-                throw new Exception("Invalid grade value!");                
+                throw new Exception("Use value 0 - 100!");
             }
-
         }
+
         public void AddGrade(int grade)
         {
-            float ValueInInt = (float)grade;
-            this.grades.Add(ValueInInt);
+            float valueInInt = (float)grade;
+            this.AddGrade(valueInInt);
         }
 
         public void AddGrade(string grade)
         {
             if (float.TryParse(grade, out float result))
             {
-                this.AddGrade(result);
+                if (result >= 0 && result <= 100)
+                {
+                    this.AddGrade(result);
+                }
+                else
+                {
+                    throw new Exception("Use value 0 - 100!");
+                }
             }
             else
             {
-                throw new Exception("String is not float!");
+                throw new Exception("String is not a valid float!");
             }
         }
+
         public void AddGrade(double grade)
         {
-            float ValueInDbl = (float)Math.Ceiling(grade);
-            this.AddGrade(ValueInDbl);
-
+            float valueInDbl = (float)Math.Ceiling(grade);
+            this.AddGrade(valueInDbl);
         }
+
         public void AddGrade(char grade)
         {
             switch (grade)
             {
-                case 'A' or 'a':
-                    this.grades.Add(100);
+                case 'A':
+                case 'a':
+                    this.AddGrade(100);
                     break;
-                case 'B' or 'b':
-                    this.grades.Add(80);
+                case 'B':
+                case 'b':
+                    this.AddGrade(80);
                     break;
-                case 'C' or 'c':
-                    this.grades.Add(60);
+                case 'C':
+                case 'c':
+                    this.AddGrade(60);
                     break;
-                case 'D' or 'd':
-                    this.grades.Add(40);
+                case 'D':
+                case 'd':
+                    this.AddGrade(40);
                     break;
-                case 'E' or 'e':
-                    this.grades.Add(20);
+                case 'E':
+                case 'e':
+                    this.AddGrade(20);
                     break;
                 default:
                     throw new Exception("Wrong letter !");
             }
         }
+
         public Statistics GetStatistics()
         {
             var statistics = new Statistics();
@@ -77,7 +91,6 @@
 
             foreach (var grade in this.grades)
             {
-
                 statistics.Max = Math.Max(statistics.Max, grade);
                 statistics.Min = Math.Min(statistics.Min, grade);
                 statistics.Average += grade;
@@ -102,11 +115,9 @@
                 default:
                     statistics.AverageLetter = 'E';
                     break;
-
             }
+
             return statistics;
         }
-
-
     }
 }
