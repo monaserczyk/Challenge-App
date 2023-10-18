@@ -1,23 +1,21 @@
-﻿namespace Challenge_App
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Challenge_App
 {
-    public class Employee : IEmployee
+    public class EmployeeInMemory : EmployeeBase
     {
+
         public List<float> grades = new List<float>();
-
-        public Employee(string name, string surname, char gender, int age)
-
-        {
-            this.Name = name;
-            this.Surname = surname;
-            this.Gender = gender;
-            this.Age = age;
-        }
-        public string Name { get; private set; }
-        public string Surname { get; private set; }
-        public char Gender { get; private set; }
-        public int Age { get; private set; }
-
-        public void AddGrade(float grade)
+        public EmployeeInMemory(string name, string surname, char gender, int age) 
+            : base(name, surname, gender, age)
+            {
+            }
+        
+        public override void AddGrade(float grade)
         {
             if (grade >= 0 && grade <= 100)
             {
@@ -29,13 +27,19 @@
             }
         }
 
-        public void AddGrade(int grade)
+        public override void AddGrade(double grade)
+        {
+            float valueInDbl = (float)Math.Ceiling(grade);
+            this.AddGrade(valueInDbl);
+        }
+
+        public override void AddGrade(int grade)
         {
             float valueInInt = (float)grade;
             this.AddGrade(valueInInt);
         }
 
-        public void AddGrade(string grade)
+        public override void AddGrade(string grade)
         {
             if (float.TryParse(grade, out float result))
             {
@@ -54,13 +58,7 @@
             }
         }
 
-        public void AddGrade(double grade)
-        {
-            float valueInDbl = (float)Math.Ceiling(grade);
-            this.AddGrade(valueInDbl);
-        }
-
-        public void AddGrade(char grade)
+        public override void AddGrade(char grade)
         {
             switch (grade)
             {
@@ -89,7 +87,7 @@
             }
         }
 
-        public Statistics GetStatistics()
+        public override Statistics GetStatistics()
         {
             var statistics = new Statistics();
             statistics.Average = 0;
