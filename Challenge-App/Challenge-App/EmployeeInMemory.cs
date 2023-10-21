@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Challenge_App.EmployeeBase;
 
 namespace Challenge_App
 {
     public class EmployeeInMemory : EmployeeBase
     {
+
+        public override event GradeAddedDelegate GradeAdded;
 
         public List<float> grades = new List<float>();
         public EmployeeInMemory(string name, string surname, char gender, int age) 
@@ -20,25 +23,27 @@ namespace Challenge_App
             if (grade >= 0 && grade <= 100)
             {
                 this.grades.Add(grade);
+
+                if (GradeAdded != null)
+                {
+                GradeAdded(this, new EventArgs());
+                }
             }
             else
             {
                 throw new Exception("Use value 0 - 100!");
             }
         }
-
         public override void AddGrade(double grade)
         {
             float valueInDbl = (float)Math.Ceiling(grade);
             this.AddGrade(valueInDbl);
         }
-
         public override void AddGrade(int grade)
         {
             float valueInInt = (float)grade;
             this.AddGrade(valueInInt);
         }
-
         public override void AddGrade(string grade)
         {
             if (float.TryParse(grade, out float result))

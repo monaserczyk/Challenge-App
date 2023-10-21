@@ -4,35 +4,35 @@ Console.WriteLine("Welcome to The Challenger, employee evaluation program.");
 Console.WriteLine("_________________________________________________________");
 Console.WriteLine();
 
-Console.WriteLine("Provide an employee name.");
-var employeename = Console.ReadLine();
-Console.WriteLine("Provide an employee surname.");
-var employeesurname = Console.ReadLine();
-var employee = new EmployeeInFile(employeename, employeesurname, 'F', 22);
-Console.WriteLine(employee.Name);
-Console.WriteLine(employee.Surname);
-employee.AddGrade(0.5f);
-employee.AddGrade(2);
-employee.AddGrade(2.5f);
+var employee = new EmployeeInMemory("Monika","Serczyk",'K',30);
+employee.ToString();
+employee.GradeAdded += EmployeeGradeAdded;
 
-//while (true)
-//{
-   // Console.WriteLine("Provide an employee rating.");
-   // var input = Console.ReadLine();
-   // if (input == "q")
-   // {
-    //    break;
-   // }
-   // try
-   // {
-    //    employee.AddGrade(input);
-   // }
-   // catch(Exception x)
-   // {
-    //    Console.WriteLine($"Exception occurred!!!{x.Message}");
-    //}
-    
-//}
+void EmployeeGradeAdded(object sender,EventArgs args) 
+{
+    Console.WriteLine("Dodano nowa ocene");
+}
+
+employee.AddGrade(2);
+
+while (true)
+{
+   Console.WriteLine("Provide an employee rating.");
+    var input = Console.ReadLine();
+    if (input == "q")
+    {
+        break;
+    }
+    try
+    {
+        employee.AddGrade(input);
+    }
+    catch (Exception x)
+    {
+        Console.WriteLine($"exception occurred!!!{x.Message}");
+    }
+
+}
 
 var statistics = employee.GetStatistics();
 Console.WriteLine($"Average: {statistics.Average}");

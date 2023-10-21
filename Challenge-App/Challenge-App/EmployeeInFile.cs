@@ -2,13 +2,13 @@
 {
     public class EmployeeInFile : EmployeeBase
     {
+        public override event GradeAddedDelegate GradeAdded;
+
         private const string fileName = "grades.txt";
         public EmployeeInFile(string name, string surname, char gender, int age)
             : base(name, surname, gender, age)
         {
-
         }
-
         public override void AddGrade(float grade)
         {
             using (var writer = File.AppendText(fileName))
@@ -22,13 +22,11 @@
             float valueInDbl = (float)Math.Ceiling(grade);
             this.AddGrade(valueInDbl);
         }
-
         public override void AddGrade(int grade)
         {
             float valueInInt = (float)grade;
             this.AddGrade(valueInInt);
         }
-
         public override void AddGrade(string grade)
         {
             if (float.TryParse(grade, out float result))
@@ -36,6 +34,11 @@
                 if (result >= 0 && result <= 100)
                 {
                     this.AddGrade(result);
+
+                    if (GradeAdded != null)
+                    {
+                        GradeAdded(this, new EventArgs());
+                    }
                 }
                 else if (char.TryParse(grade, out char charResult))
                 {
