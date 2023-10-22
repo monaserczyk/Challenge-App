@@ -4,20 +4,18 @@ Console.WriteLine("Welcome to The Challenger, employee evaluation program.");
 Console.WriteLine("_________________________________________________________");
 Console.WriteLine();
 
-var employee = new EmployeeInMemory("Monika","Serczyk",'K',30);
+var employee = new EmployeeInFile("Monika", "Serczyk", 'K', 30);
 employee.ToString();
 employee.GradeAdded += EmployeeGradeAdded;
 
-void EmployeeGradeAdded(object sender,EventArgs args) 
+void EmployeeGradeAdded(object sender, EventArgs args)
 {
-    Console.WriteLine("Dodano nowa ocene");
+    Console.WriteLine("New grade has been added");
 }
-
-employee.AddGrade(2);
 
 while (true)
 {
-   Console.WriteLine("Provide an employee rating.");
+    Console.WriteLine("Provide an employee rating.");
     var input = Console.ReadLine();
     if (input == "q")
     {
