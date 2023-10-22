@@ -114,10 +114,7 @@
             var statistics = new Statistics();
             foreach (var grade in grades)
             {
-                if (grade >= 0)
-                {
-                    statistics.AddGrade(grade);
-                }
+                statistics.AddGrade(grade);
             }
             return statistics;
         }

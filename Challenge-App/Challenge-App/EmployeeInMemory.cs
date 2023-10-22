@@ -61,23 +61,18 @@
             switch (grade)
             {
                 case 'A':
-                case 'a':
-                    this.AddGrade(100);
+                  this.AddGrade(100);
                     break;
-                case 'B':
-                case 'b':
+                case 'B':                
                     this.AddGrade(80);
                     break;
-                case 'C':
-                case 'c':
+                case 'C':                
                     this.AddGrade(60);
                     break;
-                case 'D':
-                case 'd':
+                case 'D':                
                     this.AddGrade(40);
                     break;
-                case 'E':
-                case 'e':
+                case 'E':                
                     this.AddGrade(20);
                     break;
                 default:

@@ -28,7 +28,7 @@
                     case var average when average >= 20:
                         return 'E';
                     default:
-                        return 'E';
+                        return 'E!';
                 }
             }
 

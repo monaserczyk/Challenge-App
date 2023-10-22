@@ -10,7 +10,7 @@ employee.GradeAdded += EmployeeGradeAdded;
 
 void EmployeeGradeAdded(object sender, EventArgs args)
 {
-    Console.WriteLine("New grade has been added");
+    Console.WriteLine("New grade has been added.");
 }
 
 while (true)
